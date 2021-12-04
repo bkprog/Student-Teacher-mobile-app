@@ -1,31 +1,108 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Alert, Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, View,Pressable } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { withSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 function HomeScreen({navigation})
 {
     return(
-      <View style={styles.container}>
-      <Text></Text>
+      <View
+      style={{
+        backgroundColor:"#fff",
+        flex: 1,
+        
+      }}>
       
-      <Button 
-      title= "Jestem uczniem"
-      color= "red"
-      onPress={()=> navigation.navigate('Uczen')}
-    
-      />
+        <View
+        style={{
+          backgroundColor: "white",
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 10,
+        }}>
+            
 
-      <Button 
-      title= "Jestem korepetytorem"
-      color= "blue"
-      fontSize="20"
+<Pressable
+        onPress={()=> navigation.navigate('Uczen')}
+
+        style={() => [
+          {
+            backgroundColor: 'black',
+              
+              width: '90%',
+              height: '90%',
+              backgroundColor: 'midnightblue',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 10,
+          },
+          
+        ]}>
+        {() => (
+          <Text style={
+            {
+              color:'white',
+              justifyContent: 'center',
+              alignItems: 'center',
+              
+            }}>
+
+            JESTEM UCZNIEM
+          </Text>
+        )}
+      </Pressable>
+               
+        </View>
+
+        <View
+        style={{
+          backgroundColor: "white",
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: 10,
+        }}>
+
+<Pressable
+        onPress={()=> navigation.navigate('Korepetytor')}
+
+        style={() => [
+          {
+            backgroundColor: 'black',
+              
+              width: '90%',
+              height: '90%',
+              backgroundColor: 'midnightblue',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 8,
+            
+          },
+          
+        ]}>
+        {() => (
+          <Text style={
+            {
+              color:'white',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 8,
+              
+            }}>
+
+            JESTEM KOREPETYTOREM
+          </Text>
+        )}
+      </Pressable>
+
+        </View>
       
-
-      onPress={()=> navigation.navigate('Korepetytor')}
-      />
+      
+      
       
       <StatusBar style="auto" />
     </View>
@@ -35,29 +112,110 @@ function HomeScreen({navigation})
 function KorepetytorScreen({navigation})
 {
     return(
-      <View style={styles.container}>
-      <Text></Text>
+      <View
+      style={{
+        backgroundColor:"#fff",
+        flex: 1,
+        
+      }}>
       
-      <Button 
-      style= {{
-        padding: 100,
-        marginBottom: 200,
-        fontSize: 30,
-      }}
-      title= "Zaloguj się"
-      color= "red"
-      onPress={()=> navigation.navigate('Login')}
+        <View
+        style={{
+          backgroundColor: "white",
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+
+        
+
+<Pressable
+        onPress={()=> navigation.navigate('Login')}
+
+        style={() => [
+          {
+            backgroundColor: 'black',
+              
+              width: '90%',
+              height: '90%',
+              backgroundColor: 'midnightblue',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 10,
+          },
+          
+        ]}>
+        {() => (
+          <Text style={
+            {
+              color:'white',
+              justifyContent: 'center',
+              alignItems: 'center',
+              
+            }}>
+
+            ZALOGUJ SIĘ
+          </Text>
+        )}
+      </Pressable>
+
+        </View>
+
+        <View
+        style={{
+          backgroundColor: "white",
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+
       
-      />
 
-      <Button 
-      title= "Nie masz konta? Zarejestuj się"
-      color= "blue"
-      onPress={()=> navigation.navigate('Rejestracja')}
-      />
+<Pressable
+        onPress={()=> navigation.navigate('Rejestracja')}
 
+        style={() => [
+          {
+            backgroundColor: 'black',
+              
+              width: '90%',
+              height: '90%',
+              backgroundColor: 'midnightblue',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: 10,
+          },
+          
+        ]}>
+        {() => (
+          <Text style={
+            {
+              color:'white',
+              justifyContent: 'center',
+              alignItems: 'center',
+              
+            }}>
+
+            NIE MASZ KONTA? ZAREJESTRUJ SIĘ!
+          </Text>
+        )}
+      </Pressable>
+
+        </View>
+      
+      
+      
+      
       <StatusBar style="auto" />
     </View>
+      
+      
+      
+
+      
+
+      
+    
     );
 }
 
@@ -117,19 +275,21 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFF',
+    backgroundColor: "dodgerblue",
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center',
     
   },
 
-  buttons:{
+  buttons1:{
     flex:1,
+    height: 300,
     marginBottom: 100,
     margin:100,
-
+    alignItems: 'center',
+    justifyContent: 'center',
     
     
-  }
+  },
 });
