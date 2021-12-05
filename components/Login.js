@@ -1,36 +1,38 @@
 import React from "react";
-import {StyleSheet, Text, View} from "react-native";
-import {StatusBar} from "expo-status-bar";
+import {Text} from "react-native";
+import {
+    FormControl,
+    Input,
+    Stack,
+    Box,
+    Center,
+    NativeBaseProvider, Button, Heading,
+} from "native-base"
 
 export default function Login({navigation}){
     return(
-        <View style={styles.container}>
-            <Text>Tutaj bedzie logowanie</Text>
-
-
-            <StatusBar style="auto" />
-        </View>
+        <NativeBaseProvider>
+            <Center flex={1} px={"3"}>
+                <Box w={{
+                    base: "90%",
+                    md: "25%",
+                }}>
+                    <FormControl>
+                        <Stack textAlign="center" mx="4" >
+                            <Center>
+                                <Heading textAlign="center" mb="10">
+                                    Zaloguj się
+                                </Heading>
+                            </Center>
+                            <Text>Login</Text>
+                            <Input type="text" placeholder="Login" textAlign="center"/>
+                            <Text>Hasło</Text>
+                            <Input type="password" placeholder="Hasło" textAlign="center"/>
+                            <Button onPress={() => console.log("hello world!")}>Zaloguj</Button>
+                        </Stack>
+                    </FormControl>
+                </Box>
+            </Center>
+        </NativeBaseProvider>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "dodgerblue",
-        marginBottom: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-
-    },
-
-    buttons1:{
-        flex:1,
-        height: 300,
-        marginBottom: 100,
-        margin:100,
-        alignItems: 'center',
-        justifyContent: 'center',
-
-
-    },
-});

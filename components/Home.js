@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View,Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
+
 export default function Home({navigation}){
     return(
         <View
