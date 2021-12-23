@@ -6,6 +6,7 @@ import Teacher from "./components/Teacher";
 import Student from "./components/Student";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import CameraScreen from './components/CameraScreen';
 
 const Stack= createNativeStackNavigator();
 
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="Uczen" component={Student} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Rejestracja" component={Register} />
+        <Stack.Screen name="CameraScreen" component={CameraScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
