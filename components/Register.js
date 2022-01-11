@@ -32,8 +32,8 @@ export default function Register({navigation}){
                             <Text>Powtórz hasło</Text>
                             <Input type="password" placeholder="Hasło" textAlign="center"/>
                             <Text>Avatar</Text>
-                            <Button onPress={()=> navigation.navigate('CameraScreen')}>Aparat</Button>
-                            <Button onPress={() => console.log("hello world!")}>Zarejestruj</Button>
+                            <Button margin={5} onPress={()=> navigation.navigate('CameraScreen')}>Aparat</Button>
+                            <Button margin={5} onPress={() => console.log("hello world!")}>Zarejestruj</Button>
                         </Stack>
                     </FormControl>
                 </Box>

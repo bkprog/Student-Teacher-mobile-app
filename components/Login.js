@@ -28,7 +28,7 @@ export default function Login({navigation}){
                             <Input type="text" placeholder="Login" textAlign="center"/>
                             <Text>Hasło</Text>
                             <Input type="password" placeholder="Hasło" textAlign="center"/>
-                            <Button onPress={() => console.log("hello world!")}>Zaloguj</Button>
+                            <Button margin={5} onPress={() => console.log("hello world!")}>Zaloguj</Button>
                         </Stack>
                     </FormControl>
                 </Box>
