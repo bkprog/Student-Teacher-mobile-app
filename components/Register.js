@@ -6,13 +6,25 @@ import {
     Stack,
     Box,
     Center,
-    NativeBaseProvider, Button, Heading,TextArea
+    NativeBaseProvider, Button, Heading,TextArea,Select
 } from "native-base";
 import axios from "axios";
 
 
 export default function Register({navigation}){
+    const [login, onChangeLogin] = React.useState("");
+    const [password, onChangePassword] = React.useState("");
 
+    const getFieldsFromApiAsync = async () => {
+        axios.get('https://mobilkiapp.herokuapp.com/field_tutor',{
+            params:{
+                id:login,
+                field:password
+            }
+        }).then(results =>{
+            console.log(results.data);
+        })
+    };
 
     const onSubmit = (data) => {
         console.log(data);
@@ -43,6 +55,7 @@ export default function Register({navigation}){
                             <Input type="text" placeholder="Login" textAlign="center"/>
                             <Text>Hasło</Text>
                             <Input type="password" placeholder="Hasło" textAlign="center"/>
+                            <Text>Pole zainteresowań</Text>
                             <Text>Opis</Text>
                             <TextArea
                                 textAlign={"center"}
@@ -54,6 +67,7 @@ export default function Register({navigation}){
                                 }}
                             />
                             <Button margin={5} onPress={() => console.log(onSubmit)}>Zarejestruj</Button>
+                            <Button onPress={()=>getFieldsFromApiAsync()}>test</Button>
                         </Stack>
                     </FormControl>
                 </Box>
