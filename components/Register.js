@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {StyleSheet, Text, View, Pressable} from "react-native";
 import {
     FormControl,
@@ -6,29 +6,56 @@ import {
     Stack,
     Box,
     Center,
-    NativeBaseProvider, Button, Heading,TextArea,Select
+    NativeBaseProvider, Button, Heading,TextArea,Select, Checkbox, ScrollView
 } from "native-base";
 import axios from "axios";
 
 
 export default function Register({navigation}){
-    const [login, onChangeLogin] = React.useState("");
-    const [password, onChangePassword] = React.useState("");
+    const [fields, setFields] = useState([]);
+    const [checkID, setCheckID] =useState([]);
 
-    const getFieldsFromApiAsync = async () => {
-        axios.get('https://mobilkiapp.herokuapp.com/field_tutor',{
-            params:{
-                id:login,
-                field:password
+    useEffect(() => {
+        const fetchFields = async () => {
+            try {
+                const res = await axios.get("https://mobilkiapp.herokuapp.com/field_tutor");
+                setFields(res.data);
             }
-        }).then(results =>{
-            console.log(results.data);
-        })
+            catch(e) {
+                console.error(e);
+            }
+        }
+        fetchFields().catch()
+    },[])
+
+    const postRegisterForm = async () => {
+        axios.post()
     };
 
-    const onSubmit = (data) => {
-        console.log(data);
+    let ids = [];
+
+    const onSubmit = () => {
+        console.log(ids);
     }
+
+    const List = () => {
+        return fields.map((item) => {
+                return (
+                    <View key={item.id}>
+                    <Checkbox id={item.id} onChange={()=>{checkList(item.id)}}>{item.name}</Checkbox>
+                    </View>
+                )
+            })
+    }
+
+    const checkList = (id) => {
+        if(ids.find(element=>element==id) === 1){
+            ids.push(id);
+        } else {
+            ids=ids.filter(element=>element!=id)
+        }
+    }
+
     return(
         <NativeBaseProvider>
             <Center flex={1} px={"3"}>
@@ -36,6 +63,7 @@ export default function Register({navigation}){
                     base: "90%",
                     md: "25%",
                 }}>
+                    <ScrollView>
                     <FormControl>
                         <Stack textAlign="center" mx="4" >
                             <Center>
@@ -56,6 +84,7 @@ export default function Register({navigation}){
                             <Text>Hasło</Text>
                             <Input type="password" placeholder="Hasło" textAlign="center"/>
                             <Text>Pole zainteresowań</Text>
+                            <List/>
                             <Text>Opis</Text>
                             <TextArea
                                 textAlign={"center"}
@@ -66,16 +95,20 @@ export default function Register({navigation}){
                                 md: "100%",
                                 }}
                             />
+
                             <Button onPress={()=> navigation.navigate('CameraScreen')}>Aparat</Button>
-                            <Button margin={5} onPress={() => console.log(onSubmit)}>Zarejestruj</Button>
                             <Button onPress={()=>getFieldsFromApiAsync()}>test</Button>
+                            <Button margin={5} onPress={() => onSubmit()}>Zarejestruj</Button>
                         </Stack>
                     </FormControl>
+                    </ScrollView>
                 </Box>
             </Center>
         </NativeBaseProvider>
     );
 }
+
+
 
 const styles = StyleSheet.create({
     container: {
