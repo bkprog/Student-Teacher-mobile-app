@@ -88,7 +88,7 @@ export default function Teacher({navigation}){
 
                             }}>
 
-                            NIE MASZ KONTA? ZAREJESTRUJ SIĘ!
+                            STWÓRZ OGŁOSZENIE!
                         </Text>
                     )}
                 </Pressable>
