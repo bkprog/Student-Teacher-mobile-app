@@ -66,6 +66,7 @@ export default function Register({navigation}){
                                 md: "100%",
                                 }}
                             />
+                            <Button onPress={()=> navigation.navigate('CameraScreen')}>Aparat</Button>
                             <Button margin={5} onPress={() => console.log(onSubmit)}>Zarejestruj</Button>
                             <Button onPress={()=>getFieldsFromApiAsync()}>test</Button>
                         </Stack>
