@@ -8,6 +8,7 @@ export default function LoggedUser({navigation}){
     // console.log(navigation.getState().routes[navigation.getState().routes.indexOf("LoggedUser")].params);
     console.log('asdasd'+ findObject.params.user.id);
 
+
     return(
         <NativeBaseProvider>
             <Center flex={1} px={"3"}>
