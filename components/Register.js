@@ -1,16 +1,22 @@
 import React from "react";
 import {StyleSheet, Text, View, Pressable} from "react-native";
-import {StatusBar} from "expo-status-bar";
 import {
     FormControl,
     Input,
     Stack,
     Box,
     Center,
-    NativeBaseProvider, Button, Heading,
-} from "native-base"
+    NativeBaseProvider, Button, Heading,TextArea
+} from "native-base";
+import axios from "axios";
+
 
 export default function Register({navigation}){
+
+
+    const onSubmit = (data) => {
+        console.log(data);
+    }
     return(
         <NativeBaseProvider>
             <Center flex={1} px={"3"}>
@@ -25,15 +31,29 @@ export default function Register({navigation}){
                                     Zarejestruj się
                                 </Heading>
                             </Center>
+                            <Text>Imię</Text>
+                            <Input type="text" placeholder="Imię" textAlign="center"/>
+                            <Text>Nazwisko</Text>
+                            <Input type="text" placeholder="Nazwisko" textAlign="center"/>
+                            <Text>E-mail</Text>
+                            <Input type="text" placeholder="E-mail" textAlign="center"/>
+                            <Text>Numer telefonu</Text>
+                            <Input type="text" placeholder="Numer telefonu" textAlign="center"/>
                             <Text>Login</Text>
                             <Input type="text" placeholder="Login" textAlign="center"/>
                             <Text>Hasło</Text>
                             <Input type="password" placeholder="Hasło" textAlign="center"/>
-                            <Text>Powtórz hasło</Text>
-                            <Input type="password" placeholder="Hasło" textAlign="center"/>
-                            <Text>Avatar</Text>
-                            <Button margin={5} onPress={()=> navigation.navigate('CameraScreen')}>Aparat</Button>
-                            <Button margin={5} onPress={() => console.log("hello world!")}>Zarejestruj</Button>
+                            <Text>Opis</Text>
+                            <TextArea
+                                textAlign={"center"}
+                                h={20}
+                                placeholder="Opis"
+                                w={{
+                                base: "100%",
+                                md: "100%",
+                                }}
+                            />
+                            <Button margin={5} onPress={() => console.log(onSubmit)}>Zarejestruj</Button>
                         </Stack>
                     </FormControl>
                 </Box>
