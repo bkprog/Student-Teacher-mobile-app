@@ -9,7 +9,6 @@ import {
     NativeBaseProvider, Button, Heading, View,
 } from "native-base"
 import axios from "axios";
-import "./UserModel";
 
 export default function Login({navigation}){
     const [login, onChangeLogin] = React.useState("");
