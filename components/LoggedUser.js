@@ -6,6 +6,7 @@ export default function LoggedUser({navigation}){
     console.log(findObject.params);
     // console.log(navigation.getState().routes[navigation.getState().routes.indexOf("LoggedUser")].params);
 
+
     return(
         <NativeBaseProvider>
             <Center flex={1} px={"3"}>
