@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 
 
 export default function Home({navigation}){
+
     return(
         <View
         style={{
@@ -11,7 +12,6 @@ export default function Home({navigation}){
           flex: 1,
           
         }}>
-        
           <View
           style={{
             backgroundColor: "white",
@@ -20,8 +20,6 @@ export default function Home({navigation}){
             alignItems: 'center',
             borderRadius: 10,
           }}>
-              
-  
   <Pressable
           onPress={()=> navigation.navigate('Uczen')}
   

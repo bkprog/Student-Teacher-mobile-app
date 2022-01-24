@@ -6,13 +6,34 @@ import {
     Stack,
     Box,
     Center,
-    NativeBaseProvider, Button, Heading,
+    NativeBaseProvider, Button, Heading, View,
 } from "native-base"
+import axios from "axios";
+import "./UserModel";
 
 export default function Login({navigation}){
+    const [login, onChangeLogin] = React.useState("");
+    const [password, onChangePassword] = React.useState("");
+
+    const getMoviesFromApiAsync = async () => {
+        axios.get('https://mobilkiapp.herokuapp.com/tutor',{
+            params:{
+                username:login,
+                password:password
+            }
+        }).then(results =>{
+            if (results.data === "Złe dane logowania!"){
+                alert("Wpisano niepoprawne dane logowania.\nSpróbuj jeszcze raz.")
+            }
+            else{
+                navigation.navigate("LoggedUser",{user:results.data});
+            }
+        })
+    };
+
     return(
         <NativeBaseProvider>
-            <Center flex={1} px={"3"}>
+            <Center flex={0.7} px={"3"}>
                 <Box w={{
                     base: "90%",
                     md: "25%",
@@ -24,11 +45,19 @@ export default function Login({navigation}){
                                     Zaloguj się
                                 </Heading>
                             </Center>
-                            <Text>Login</Text>
-                            <Input type="text" placeholder="Login" textAlign="center"/>
-                            <Text>Hasło</Text>
-                            <Input type="password" placeholder="Hasło" textAlign="center"/>
-                            <Button margin={5} onPress={() => console.log("hello world!")}>Zaloguj</Button>
+                            <Center>
+                                <View>
+                                    <Text style={{marginTop:30}}>Login</Text>
+                                </View>
+                            </Center>
+                            <Input style={{marginTop:30}} type="text" value={login} onChangeText={onChangeLogin} placeholder="Twój login" textAlign="center"/>
+                            <Center>
+                                <View>
+                                    <Text style={{marginTop:30}}>Hasło</Text>
+                                </View>
+                            </Center>
+                            <Input style={{marginTop:20}} type="password" value={password} onChangeText={onChangePassword} placeholder="Twoje hasło" textAlign="center"/>
+                            <Button style={{marginTop:50}} onPress={() => getMoviesFromApiAsync()}>Zaloguj</Button>
                         </Stack>
                     </FormControl>
                 </Box>
@@ -36,3 +65,4 @@ export default function Login({navigation}){
         </NativeBaseProvider>
     );
 }
+
