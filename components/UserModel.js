@@ -1,9 +1,0 @@
-globalname = "";
-surname = "";
-description = "";
-email = "";
-id = 0;
-password = "";
-phoneNumber = "";
-username = "";
-fields = []
