@@ -13,7 +13,14 @@ import axios from "axios";
 
 export default function Register({navigation}){
     const [fields, setFields] = useState([]);
-    const [checkID, setCheckID] =useState([]);
+    const [name, onChangeName] = React.useState("");
+    const [surname, onChangeSurname] = React.useState("");
+    const [email, onChangeEmail] = React.useState("");
+    const [number, onChangeNumber] = React.useState("");
+    const [login, onChangeLogin] = React.useState("");
+    const [password, onChangePassword] = React.useState("");
+    const [description, onChangeDescription] = React.useState("");
+
 
     useEffect(() => {
         const fetchFields = async () => {
@@ -29,30 +36,64 @@ export default function Register({navigation}){
     },[])
 
     const postRegisterForm = async () => {
-        axios.post()
+        axios.post("https://mobilkiapp.herokuapp.com/tutor",{
+            name: name,
+            surname: surname,
+            email: email,
+            password: password,
+            phoneNumber: number,
+            username:login,
+            description: description,
+            fields: ids
+        }).then(result =>{
+            alert(result.data);
+        })
     };
 
     let ids = [];
 
     const onSubmit = () => {
+        console.log(name);
+        console.log(surname);
+        console.log(email);
+        console.log(number);
+        console.log(login);
+        console.log(password);
+        console.log(description);
         console.log(ids);
+        axios.post("https://mobilkiapp.herokuapp.com/tutor",{
+            name: name,
+            surname: surname,
+            email: email,
+            password: password,
+            phoneNumber: number,
+            username:login,
+            description: description,
+            fields: ids
+        }).then(result =>{
+            alert(result.data);
+        })
     }
 
     const List = () => {
         return fields.map((item) => {
                 return (
                     <View key={item.id}>
-                    <Checkbox id={item.id} onChange={()=>{checkList(item.id)}}>{item.name}</Checkbox>
+                    <Checkbox id={item.id} onChange={()=>{checkList(item.id)}} value={""}>{item.name}</Checkbox>
                     </View>
                 )
             })
     }
 
     const checkList = (id) => {
-        if(ids.find(element=>element==id) === 1){
+        let find = 0;
+        for(let i=0;i<ids.length;i++)
+            if(ids[i] === id) find = 1;
+        if(find !== 1){
             ids.push(id);
-        } else {
-            ids=ids.filter(element=>element!=id)
+        }
+        else {
+            ids = ids.filter(element => element !== id)
         }
     }
 
@@ -72,21 +113,23 @@ export default function Register({navigation}){
                                 </Heading>
                             </Center>
                             <Text>Imię</Text>
-                            <Input type="text" placeholder="Imię" textAlign="center"/>
+                            <Input type="text" placeholder="Imię" value={name} onChangeText={onChangeName} textAlign="center"/>
                             <Text>Nazwisko</Text>
-                            <Input type="text" placeholder="Nazwisko" textAlign="center"/>
+                            <Input type="text" placeholder="Nazwisko" value={surname} onChangeText={onChangeSurname} textAlign="center"/>
                             <Text>E-mail</Text>
-                            <Input type="text" placeholder="E-mail" textAlign="center"/>
+                            <Input type="text" placeholder="E-mail" value={email} onChangeText={onChangeEmail} textAlign="center"/>
                             <Text>Numer telefonu</Text>
-                            <Input type="text" placeholder="Numer telefonu" textAlign="center"/>
+                            <Input type="text" placeholder="Numer telefonu" value={number} onChangeText={onChangeNumber} textAlign="center"/>
                             <Text>Login</Text>
-                            <Input type="text" placeholder="Login" textAlign="center"/>
+                            <Input type="text" placeholder="Login" value={login} onChangeText={onChangeLogin} textAlign="center"/>
                             <Text>Hasło</Text>
-                            <Input type="password" placeholder="Hasło" textAlign="center"/>
+                            <Input type="password" placeholder="Hasło" value={password} onChangeText={onChangePassword} textAlign="center"/>
                             <Text>Pole zainteresowań</Text>
                             <List/>
                             <Text>Opis</Text>
                             <TextArea
+                                value={description}
+                                onChangeText={onChangeDescription}
                                 textAlign={"center"}
                                 h={20}
                                 placeholder="Opis"
@@ -97,7 +140,6 @@ export default function Register({navigation}){
                             />
 
                             <Button onPress={()=> navigation.navigate('CameraScreen')}>Aparat</Button>
-                            <Button onPress={()=>getFieldsFromApiAsync()}>test</Button>
                             <Button margin={5} onPress={() => onSubmit()}>Zarejestruj</Button>
                         </Stack>
                     </FormControl>
