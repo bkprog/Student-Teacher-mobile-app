@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {NativeBaseProvider} from "native-base/src/core/NativeBaseProvider";
-import {Box, Button, Center, Heading, Text} from "native-base";
+import {Box, Button, Center, Heading, ScrollView, Text} from "native-base";
 import axios from "axios";
 import {View} from "react-native";
 
@@ -54,7 +54,9 @@ export default function TutorsList({navigation}){
 
     return(
         <NativeBaseProvider>
-            <ListTutors/>
+            <ScrollView>
+                <ListTutors/>
+            </ScrollView>
         </NativeBaseProvider>
     );
 }
