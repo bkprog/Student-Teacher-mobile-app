@@ -53,14 +53,6 @@ export default function Register({navigation}){
     let ids = [];
 
     const onSubmit = () => {
-        console.log(name);
-        console.log(surname);
-        console.log(email);
-        console.log(number);
-        console.log(login);
-        console.log(password);
-        console.log(description);
-        console.log(ids);
         axios.post("https://mobilkiapp.herokuapp.com/tutor",{
             name: name,
             surname: surname,
@@ -71,7 +63,13 @@ export default function Register({navigation}){
             description: description,
             fields: ids
         }).then(result =>{
-            alert(result.data);
+            if(result.data === "Pomyślnie stworzono korepetytora"){
+                alert(result.data);
+                navigation.navigate("Korepetytor")
+            }
+            else alert(result.data);
+
+
         })
     }
 
@@ -124,8 +122,6 @@ export default function Register({navigation}){
                             <Input type="text" placeholder="Login" value={login} onChangeText={onChangeLogin} textAlign="center"/>
                             <Text>Hasło</Text>
                             <Input type="password" placeholder="Hasło" value={password} onChangeText={onChangePassword} textAlign="center"/>
-                            <Text>Pole zainteresowań</Text>
-                            <List/>
                             <Text>Opis</Text>
                             <TextArea
                                 value={description}
@@ -134,11 +130,12 @@ export default function Register({navigation}){
                                 h={20}
                                 placeholder="Opis"
                                 w={{
-                                base: "100%",
-                                md: "100%",
+                                    base: "100%",
+                                    md: "100%",
                                 }}
                             />
-
+                            <Text>Pole zainteresowań</Text>
+                            <List/>
                             <Button onPress={()=> navigation.navigate('CameraScreen')}>Aparat</Button>
                             <Button margin={5} onPress={() => onSubmit()}>Zarejestruj</Button>
                         </Stack>

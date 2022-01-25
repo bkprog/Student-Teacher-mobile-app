@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, View} from "react-native";
 import {StatusBar} from "expo-status-bar";
 import axios from "axios";
-import {Button, Center, Heading} from "native-base";
+import {Button, Center, Heading, ScrollView} from "native-base";
 import {NativeBaseProvider} from "native-base/src/core/NativeBaseProvider";
 
 export default function Student({navigation}) {
@@ -37,15 +37,16 @@ export default function Student({navigation}) {
 
     return (
         <NativeBaseProvider>
-            <Center flex={1} px={"3"}>
-                <Heading>Wybierz kategorię</Heading>
-            </Center>
-            <View>
+            <ScrollView>
+                <Center flex={1} px={"3"}>
+                    <Heading>Wybierz kategorię</Heading>
+                </Center>
+                <View>
                     <StatusBar style="auto"/>
                     <List/>
-            </View>
+                </View>
+            </ScrollView>
         </NativeBaseProvider>
-
     );
 };
 
